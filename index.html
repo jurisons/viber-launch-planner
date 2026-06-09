@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Viber Business Messages — Launch Planner</title>
+<meta name="description" content="Assess Viber market fit, preview verified business messages, and get a personalised launch readiness plan and timeline.">
+<meta property="og:title" content="Viber Business Messages — Launch Planner">
+<meta property="og:description" content="Are your customers on Viber? Check market fit, preview the experience, and get a personalised launch plan.">
+<meta property="og:type" content="website">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@3.31.0/dist/tabler-icons.min.css">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<div class="wrap">
+
+<header class="page-head">
+  <div class="page-title">Viber Business Messages <span class="badge">Launch Planner</span></div>
+  <div class="page-tag">Assess market fit, preview the experience, and get a personalised readiness plan — in five quick steps.</div>
+</header>
+
+<h2 class="sr-only">Viber Business Launch Planner — an interactive tool to assess market fit, preview messages, and generate a readiness report</h2>
+
+<div class="planner">
+
+<div class="step-bar" id="stepBar">
+  <div class="step-tab active" onclick="goStep(0)" id="tab0"><span class="step-num">Step 1</span>Market fit</div>
+  <div class="step-tab" onclick="goStep(1)" id="tab1"><span class="step-num">Step 2</span>Use case</div>
+  <div class="step-tab" onclick="goStep(2)" id="tab2"><span class="step-num">Step 3</span>Message preview</div>
+  <div class="step-tab" onclick="goStep(3)" id="tab3"><span class="step-num">Step 4</span>Readiness check</div>
+  <div class="step-tab" onclick="goStep(4)" id="tab4"><span class="step-num">Step 5</span>Get started</div>
+</div>
+
+<div class="screen visible" id="screen0">
+  <h2>Where are your customers?</h2>
+  <p class="sub">Viber's value depends entirely on whether your audience is actually there. Select the countries where you'll send messages — we'll score your market opportunity instantly.</p>
+  <div class="country-grid" id="countryGrid"><!-- rendered from COUNTRIES in data.js --></div>
+
+  <div id="scorePanel" style="display:none">
+    <div class="score-bar-wrap">
+      <div class="score-bar-label"><span>Viber penetration in your markets</span><span id="scoreLabel">—</span></div>
+      <div class="score-bar-track"><div class="score-bar-fill" id="scoreFill" style="width:0;background:#378ADD"></div></div>
+    </div>
+    <div id="verdictBox"></div>
+  </div>
+
+  <div class="btn-row"><button class="btn btn-primary" onclick="goStep(1)">Next: choose your use case <i class="ti ti-arrow-right" aria-hidden="true"></i></button></div>
+</div>
+
+<div class="screen" id="screen1">
+  <h2>What will you send?</h2>
+  <p class="sub">Your use case determines message type, pricing, opt-in rules, and technical setup. Pick the closest match — this shapes your entire launch plan.</p>
+
+  <div class="card" id="uc0" onclick="selectUC(0)" style="cursor:pointer">
+    <div class="option-row" style="padding:0;border:none">
+      <input type="radio" name="usecase" value="0">
+      <div>
+        <div class="opt-label">Transactional notifications <span class="pill pill-green">Most common</span></div>
+        <div class="opt-sub">Order confirmations, delivery updates, OTPs, appointment reminders. One-way, triggered by events in your system.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="card" id="uc1" onclick="selectUC(1)" style="cursor:pointer">
+    <div class="option-row" style="padding:0;border:none">
+      <input type="radio" name="usecase" value="1">
+      <div>
+        <div class="opt-label">Promotional campaigns <span class="pill pill-amber">Needs opt-in</span></div>
+        <div class="opt-sub">Flash sales, loyalty offers, product launches. Rich media with image + button. Customers must explicitly opt in.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="card" id="uc2" onclick="selectUC(2)" style="cursor:pointer">
+    <div class="option-row" style="padding:0;border:none">
+      <input type="radio" name="usecase" value="2">
+      <div>
+        <div class="opt-label">Two-way customer support <span class="pill pill-blue">Higher engagement</span></div>
+        <div class="opt-sub">Live chat sessions, FAQ bots, agent handoff. Customer initiates — no opt-in required.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="card" id="uc3" onclick="selectUC(3)" style="cursor:pointer">
+    <div class="option-row" style="padding:0;border:none">
+      <input type="radio" name="usecase" value="3">
+      <div>
+        <div class="opt-label">Mixed (transactional + promo) <span class="pill pill-coral">Full setup</span></div>
+        <div class="opt-sub">Start with notifications to build trust, then unlock promotional messages after opt-in. Most scalable long-term.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="btn-row">
+    <button class="btn" onclick="goStep(0)"><i class="ti ti-arrow-left" aria-hidden="true"></i> Back</button>
+    <button class="btn btn-primary" onclick="goStep(2)">See message previews <i class="ti ti-arrow-right" aria-hidden="true"></i></button>
+  </div>
+</div>
+
+<div class="screen" id="screen2">
+  <h2>What it looks like for your customer</h2>
+  <p class="sub">This is exactly what a verified Viber Business Message renders on a phone. Rich media, trusted sender badge, action button — all in one thread.</p>
+
+  <div class="preview-grid" style="display:grid;grid-template-columns:1fr 1fr;gap:16px;align-items:start">
+    <div>
+      <p style="font-size:12px;color:var(--color-text-secondary);margin-bottom:8px;text-align:center">Transactional — order update</p>
+      <div class="phone-mock">
+        <div class="phone-header">
+          <div class="phone-avatar"><i class="ti ti-building-store" style="font-size:14px;color:#fff" aria-hidden="true"></i></div>
+          <div><div class="phone-name">YourBrand <span style="font-size:10px;color:#5DCAA5">✓</span></div><div class="phone-sub">Verified Business</div></div>
+        </div>
+        <div class="msg-bubble">
+          <div class="msg-text">Hi Marta, your order #8821 has been dispatched and is on its way. Estimated delivery: tomorrow by 14:00.</div>
+          <div class="msg-btn">Track my order →</div>
+          <div class="msg-meta">13:42 <span class="msg-seen">Seen ✓✓</span></div>
+        </div>
+      </div>
+    </div>
+    <div>
+      <p style="font-size:12px;color:var(--color-text-secondary);margin-bottom:8px;text-align:center">Promotional — flash sale</p>
+      <div class="phone-mock">
+        <div class="phone-header">
+          <div class="phone-avatar"><i class="ti ti-building-store" style="font-size:14px;color:#fff" aria-hidden="true"></i></div>
+          <div><div class="phone-name">YourBrand <span style="font-size:10px;color:#5DCAA5">✓</span></div><div class="phone-sub">Verified Business</div></div>
+        </div>
+        <div class="msg-bubble">
+          <div class="msg-img"><i class="ti ti-photo" style="font-size:24px" aria-hidden="true"></i> brand image</div>
+          <div class="msg-text">🔥 24h only — 30% off everything. Use code VIBER30 at checkout.</div>
+          <div class="msg-btn">Shop now →</div>
+          <div class="msg-meta">09:00 <span class="msg-seen">Seen ✓✓</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div style="margin-top:1.5rem">
+    <div class="card-grid">
+      <div class="metric-card"><div class="metric-label">Message open rate</div><div class="metric-val green">97%</div></div>
+      <div class="metric-card"><div class="metric-label">Read within 3 min</div><div class="metric-val green">90%</div></div>
+      <div class="metric-card"><div class="metric-label">vs email open rate</div><div class="metric-val">~25%</div></div>
+      <div class="metric-card"><div class="metric-label">Delivery rate</div><div class="metric-val green">97%</div></div>
+    </div>
+  </div>
+
+  <div class="btn-row">
+    <button class="btn" onclick="goStep(1)"><i class="ti ti-arrow-left" aria-hidden="true"></i> Back</button>
+    <button class="btn btn-primary" onclick="goStep(3)">Check my readiness <i class="ti ti-arrow-right" aria-hidden="true"></i></button>
+  </div>
+</div>
+
+<div class="screen" id="screen3">
+  <h2>Readiness check</h2>
+  <p class="sub">Answer three quick questions and we'll generate your personalised launch timeline and flag what you need to prepare.</p>
+
+  <div class="card">
+    <div class="form-label">Do you have a registered business website? (not just social media)</div>
+    <div class="option-row" style="padding:8px 0"><input type="radio" name="hasWeb" value="yes" onchange="updateReadiness()"> <span style="font-size:14px;color:var(--color-text-primary)">Yes, we have a domain</span></div>
+    <div class="option-row" style="padding:8px 0;border:none"><input type="radio" name="hasWeb" value="no" onchange="updateReadiness()"> <span style="font-size:14px;color:var(--color-text-primary)">No, only social media</span></div>
+  </div>
+
+  <div class="card">
+    <div class="form-label">Do you already collect customer phone numbers with explicit consent?</div>
+    <div class="option-row" style="padding:8px 0"><input type="radio" name="hasNumbers" value="yes" onchange="updateReadiness()"> <span style="font-size:14px;color:var(--color-text-primary)">Yes, in our CRM</span></div>
+    <div class="option-row" style="padding:8px 0"><input type="radio" name="hasNumbers" value="partial" onchange="updateReadiness()"> <span style="font-size:14px;color:var(--color-text-primary)">Some, but not all consented</span></div>
+    <div class="option-row" style="padding:8px 0;border:none"><input type="radio" name="hasNumbers" value="no" onchange="updateReadiness()"> <span style="font-size:14px;color:var(--color-text-primary)">Not yet</span></div>
+  </div>
+
+  <div class="card">
+    <div class="form-label">Can your team set up a webhook / API integration, or will you use a dashboard UI?</div>
+    <div class="option-row" style="padding:8px 0"><input type="radio" name="techLevel" value="api" onchange="updateReadiness()"> <span style="font-size:14px;color:var(--color-text-primary)">We have developers — API is fine</span></div>
+    <div class="option-row" style="padding:8px 0"><input type="radio" name="techLevel" value="dashboard" onchange="updateReadiness()"> <span style="font-size:14px;color:var(--color-text-primary)">No-code / dashboard preferred</span></div>
+    <div class="option-row" style="padding:8px 0;border:none"><input type="radio" name="techLevel" value="unsure" onchange="updateReadiness()"> <span style="font-size:14px;color:var(--color-text-primary)">Not sure yet</span></div>
+  </div>
+
+  <div id="readinessResult" style="display:none;margin-top:1rem">
+    <div id="checklistWrap"></div>
+    <div style="margin-top:1rem">
+      <p style="font-size:13px;font-weight:500;color:var(--color-text-secondary);margin-bottom:8px">Estimated launch timeline</p>
+      <div class="timeline" id="timelineWrap"></div>
+    </div>
+  </div>
+
+  <div class="btn-row">
+    <button class="btn" onclick="goStep(2)"><i class="ti ti-arrow-left" aria-hidden="true"></i> Back</button>
+    <button class="btn btn-primary" onclick="goStep(4)">Get my personalised plan <i class="ti ti-arrow-right" aria-hidden="true"></i></button>
+  </div>
+</div>
+
+<div class="screen" id="screen4">
+  <h2>Lock in your launch plan</h2>
+  <p class="sub">We'll send you a tailored setup guide, introduce you to the right messaging partner for your stack, and optionally send a live demo Viber message to your phone so you see it before your customers do.</p>
+
+  <div class="demo-notice"><i class="ti ti-info-circle" aria-hidden="true"></i> <strong>The demo hook:</strong> Enter your phone number below and we'll send a real Viber Business Message to your device — exactly what your customers will see, with your brand name as the sender.</div>
+
+  <div class="card" id="leadForm">
+    <label class="form-label" for="biz">Business name</label>
+    <input type="text" id="biz" placeholder="e.g. Marta's Pharmacy">
+    <label class="form-label" for="email">Your email</label>
+    <input type="email" id="email" placeholder="you@company.com">
+    <label class="form-label" for="phone">Phone number (for demo Viber message)</label>
+    <input type="tel" id="phone" placeholder="+370 600 00000">
+    <label class="form-label" for="notes">Anything you'd like us to know?</label>
+    <textarea id="notes" placeholder="e.g. We use Shopify + Klaviyo, sending to Lithuania and Latvia..."></textarea>
+    <div class="btn-row">
+      <button class="btn btn-primary" onclick="submitLead()">Send me the plan + demo message <i class="ti ti-send" aria-hidden="true"></i></button>
+    </div>
+  </div>
+
+  <div id="leadSuccess" style="display:none">
+    <div class="lead-sent">
+      <div class="lead-sent-icon"><i class="ti ti-circle-check" style="font-size:36px;color:#1D9E75" aria-hidden="true"></i></div>
+      <div class="lead-sent-title">You're in the queue!</div>
+      <div class="lead-sent-sub">Check your Viber app in the next few minutes — a demo message is on its way. We'll follow up by email with your personalised launch checklist within 24 hours.</div>
+    </div>
+    <div class="btn-row" style="justify-content:center">
+      <button class="btn" onclick="location.reload()"><i class="ti ti-refresh" aria-hidden="true"></i> Plan another launch</button>
+    </div>
+  </div>
+</div>
+
+</div>
+</div>
+
+<script src="data.js"></script>
+<script src="app.js"></script>
+</body>
+</html>
